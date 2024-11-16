@@ -28,6 +28,12 @@ class App extends Component {
     };
   }
 
+  addCredit = (credit) => {
+    this.setState(prevState => ({
+      creditList: [...prevState.creditList, credit]
+    }), this.calculateAccountBalance);
+  };
+
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
