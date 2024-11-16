@@ -27,6 +27,18 @@ class App extends Component {
       }
     };
   }
+
+  componentDidMount() {
+    //fetch the credit/debit API
+    Promise.all([
+      fetch('https://johnnylaicode.github.io/api/credits.json').then(response => response.json()),
+      fetch('https://johnnylaicode.github.io/api/debits.json').then(response => response.json())
+    ])
+    .then(([credits, debits]) => {
+      this.setState({ creditList: credits, debitList: debits }, this.calculateAccountBalance);
+    });
+  }
+
   
   calculateAccountBalance = () => {
     const totalCredits = this.state.creditList.reduce((sum, credit) => sum + Number(credit.amount), 0);
