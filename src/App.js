@@ -33,6 +33,12 @@ class App extends Component {
       creditList: [...prevState.creditList, credit]
     }), this.calculateAccountBalance);
   };
+  
+  addDebit = (debit) => {
+    this.setState(prevState => ({
+      debitList: [...prevState.debitList, debit]
+    }), this.calculateAccountBalance);
+  };
 
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
