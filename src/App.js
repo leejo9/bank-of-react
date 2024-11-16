@@ -27,7 +27,13 @@ class App extends Component {
       }
     };
   }
-
+  
+  calculateAccountBalance = () => {
+    const totalCredits = this.state.creditList.reduce((sum, credit) => sum + Number(credit.amount), 0);
+    const totalDebits = this.state.debitList.reduce((sum, debit) => sum + Number(debit.amount), 0);
+    this.setState({ accountBalance: (totalCredits - totalDebits).toFixed(2) });
+  };
+  
   addCredit = (credit) => {
     this.setState(prevState => ({
       creditList: [...prevState.creditList, credit]
